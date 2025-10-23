@@ -1,0 +1,413 @@
+/* --------------------------
+   ESTILOS PRINCIPALES CGP
+--------------------------- */
+
+:root {
+  --azul-cgp: #0152BC;
+  --azul-oscuro: #0046B3;
+  --dorado: #E7CA18;
+  --gris-claro: #F5F6FA;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #1a1a1a;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+/* --------------------------
+   LOADER
+--------------------------- */
+
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: var(--azul-cgp);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeOut 2.5s ease-in-out forwards;
+}
+
+.loader-logo {
+  width: 180px;
+  animation: pulseLogo 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseLogo {
+  from { transform: scale(1); filter: drop-shadow(0 0 15px var(--dorado)); }
+  to { transform: scale(1.05); filter: drop-shadow(0 0 25px white); }
+}
+
+@keyframes fadeOut {
+  0%, 80% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* --------------------------
+   HEADER Y NAVEGACIÓN
+--------------------------- */
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  background: var(--azul-cgp);
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+.logo, .logo-tigo {
+  height: 55px;
+  transition: 0.3s;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--azul-cgp);
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+header.scrolled .nav a {
+  color: white;
+}
+
+.nav a:hover {
+  color: var(--dorado);
+}
+
+/* --------------------------
+   HERO PRINCIPAL
+--------------------------- */
+
+.hero {
+  background: url('Assets/fondo-fibra.svg') center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: white;
+  text-align: center;
+  /* AJUSTE PARA REDUCIR ESPACIO: Reducido de 120px a 90px de relleno */
+  padding: 90px 20px;
+  min-height: 350px; /* Altura mínima ligeramente reducida */
+  height: auto;
+  margin-bottom: 0; 
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    rgba(0, 70, 179, 0.6),
+    rgba(0, 100, 255, 0.5)
+  );
+  z-index: 1;
+}
+
+.hero * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  animation: fadeIn 2s ease forwards;
+}
+
+/* <h1> del hero. Puede ser estilizado como <h2> o de forma diferente */
+.hero-content h1 {
+  font-size: 2rem; 
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------
+   BOTONES
+--------------------------- */
+
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  background: var(--azul-cgp);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-top: 15px;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  background: var(--dorado);
+  color: var(--azul-oscuro);
+}
+
+/* --------------------------
+   SECCIONES GENERALES
+--------------------------- */
+
+.section {
+  /* AJUSTE PARA REDUCIR ESPACIO: Reducido el padding vertical de 100px a 70px/80px */
+  padding: 40px 20px 70px 20px; 
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.blue-section {
+  background: var(--gris-claro);
+}
+
+/* --------------------------
+   PLANES TIGO
+--------------------------- */
+
+.planes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.plan {
+  background: white url('Assets/fondo-tigo.svg') center/cover no-repeat;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: 0.3s;
+  color: white; 
+}
+
+.plan:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+}
+
+.plan h3 {
+  margin-bottom: 10px;
+  color: var(--dorado); 
+}
+
+/* --------------------------
+   CONTACTO
+--------------------------- */
+
+.contact-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+  margin: auto;
+}
+
+input, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+/* --------------------------
+   FOOTER
+--------------------------- */
+
+footer {
+  background: url('Assets/fondo-tigo.svg') center/cover no-repeat;
+  color: white;
+  padding: 30px 20px; /* Padding ligeramente reducido */
+  text-align: center;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+footer a {
+  color: var(--dorado);
+  text-decoration: none;
+}
+
+/* --------------------------
+   WHATSAPP FLOAT
+--------------------------- */
+
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* --------------------------
+   RESPONSIVE (Ajustes clave para móvil)
+--------------------------- */
+
+@media (max-width: 768px) {
+  
+  /* AJUSTE CLAVE 1: Ocultar el menú de navegación para ahorrar espacio */
+  .nav {
+    display: none;
+  }
+
+  /* AJUSTE CLAVE 2: Reducir tamaño de logos y relleno del header */
+  .logo, .logo-tigo {
+    height: 40px; 
+  }
+
+  .header-content {
+    padding: 10px 15px; 
+  }
+  
+  /* Mantenemos tus estilos de botones responsivos */
+  .hero .btn-group {
+    display: flex;
+    flex-direction: row;     
+    justify-content: center; 
+    gap: 10px;               
+    flex-wrap: wrap;         
+  }
+
+  .hero .btn-group a {
+    flex: 1 1 auto;          
+    text-align: center;
+  }
+
+  /* AJUSTE ADICIONAL PARA REDUCIR ESPACIO EN MÓVILES */
+  .section {
+    padding: 30px 15px 50px 15px;
+  }
+
+  /* Reducir el padding interno de la sección Quiénes Somos para móviles */
+  .about-section {
+    padding: 25px; /* Reducción de 30px a 25px */
+    margin: 40px auto; /* Reducción del margen vertical */
+  }
+
+  /* Ajustar los encabezados principales */
+  h1 { /* El H1 ahora está en el Hero */
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   SECCIÓN QUIÉNES SOMOS - ESTILO CORPORATIVO
+   --------------------------------------------------------- */
+.about-section {
+  max-width: 900px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  border: 1px solid rgba(0, 70, 179, 0.2);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  padding: 40px 50px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(0, 70, 179, 0.15);
+}
+
+.about-section h2 {
+  color: #0152BC;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.about-section h3 {
+  color: #0046B3;
+  /* AJUSTE: Reducido el margen superior de 25px a 20px */
+  margin-top: 20px; 
+}
+
+.about-section p,
+.about-section li {
+  color: #333;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  /* AJUSTE: Reducido el margen inferior de los párrafos para acercar el texto */
+  margin-bottom: 10px; 
+}
+
+.about-section ul {
+  margin-left: 25px;
+}
+
+.about-section li {
+  margin-bottom: 8px; /* Reducción de 10px a 8px */
+}
