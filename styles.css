@@ -1,0 +1,736 @@
+/* IMPORTE DE FUENTE MODERNA Y LIGERA: INTER */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&display=swap');
+
+/* --------------------------
+   ESTILOS PRINCIPALES CGP
+--------------------------- */
+
+:root {
+  --azul-cgp: #0152BC;
+  --azul-oscuro: #0046B3;
+  /* --dorado: #E7CA18; <--- ELIMINADO */
+  --gris-claro: #F5F6FA;
+  --azul-claro-fondo: #E6F3FF; /* Tono bonito para la sección de Aliados */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif; /* APLICACIÓN DE LA NUEVA FUENTE: INTER */
+  color: #1a1a1a;
+  background-color: white;
+  overflow-x: hidden;
+}
+
+/* --------------------------
+   LOADER
+--------------------------- */
+
+#loader {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: var(--azul-cgp);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  animation: fadeOut 2.5s ease-in-out forwards;
+}
+
+.loader-logo {
+  width: 180px;
+  animation: pulseLogo 2s ease-in-out infinite alternate;
+}
+
+@keyframes pulseLogo {
+  /* CAMBIO: Sombra de blanco/azul en lugar de dorado */
+  from { transform: scale(1); filter: drop-shadow(0 0 15px white); } 
+  to { transform: scale(1.05); filter: drop-shadow(0 0 25px var(--azul-oscuro)); }
+}
+
+@keyframes fadeOut {
+  0%, 80% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: hidden; }
+}
+
+/* --------------------------
+   HEADER Y NAVEGACIÓN
+--------------------------- */
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+header.scrolled {
+  background: var(--azul-cgp);
+  color: white;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+
+.logo, .logo-tigo {
+  height: 55px;
+  transition: 0.3s;
+}
+
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--azul-cgp);
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+header.scrolled .nav a {
+  color: white;
+}
+
+.nav a:hover {
+  /* CAMBIO: Hover azul más claro o blanco */
+  color: white; 
+  background-color: var(--azul-oscuro);
+}
+
+/* --------------------------
+   HERO PRINCIPAL
+--------------------------- */
+
+/* KEYFRAME para mover el fondo y simular el flujo de la señal */
+@keyframes signalFlow {
+    0% { background-position: 50% 50%; } 
+    100% { background-position: 60% 50%; } /* Mueve el fondo ligeramente a la derecha */
+}
+
+.hero {
+  /* 🌐 Fondo dinámico con la imagen de antena a casa */
+  background: url('Assets/antena-a-casa-fondo.png') center center no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: white;
+  text-align: center;
+  padding: 90px 20px;
+  min-height: 350px;
+  height: auto;
+  margin-bottom: 0; 
+  overflow: hidden; 
+  
+  /* Aplicamos la animación de flujo constante, con zoom y pulso */
+  background-size: 110% 110%; /* Zoom para que haya espacio para moverse sin cortar el borde */
+  animation: signalFlow 20s linear infinite alternate;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Mantenemos el degradado de color */
+  background: linear-gradient(
+    rgba(0, 70, 179, 0.6),
+    rgba(0, 100, 255, 0.5)
+  );
+  z-index: 1;
+  animation: none; 
+}
+
+/* ELIMINAMOS EL ESTILO DEL CANVAS YA QUE LA LÓGICA PASÓ A CSS */
+/* #signal-canvas { ... } */
+
+
+.hero * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  animation: fadeIn 2s ease forwards;
+}
+
+.hero-content h1 {
+  font-size: 2rem; 
+  margin-bottom: 20px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ESTILO PARA EL TAG LOCAL */
+.local-tag {
+    display: block;
+    margin-top: 15px;
+    font-size: 1rem;
+    font-weight: 700;
+    /* CAMBIO: Color blanco en lugar de dorado */
+    color: white; 
+    text-shadow: 0 1px 2px var(--azul-oscuro);
+    background: rgba(0, 70, 179, 0.7); /* Azul oscuro semitransparente */
+    padding: 5px 10px;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}
+
+/* --------------------------
+   BOTONES
+--------------------------- */
+
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  background: var(--azul-cgp);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-top: 15px;
+}
+
+.btn-primary:hover, .btn-secondary:hover {
+  /* CAMBIO: Hover a azul más oscuro */
+  background: var(--azul-oscuro); 
+  color: white;
+}
+
+/* --------------------------
+   SECCIONES GENERALES
+--------------------------- */
+
+.section {
+  padding: 40px 20px 70px 20px; 
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.blue-section {
+  background: var(--gris-claro);
+}
+
+/* --------------------------
+   PROMOCIONES Y CARACTERÍSTICAS
+--------------------------- */
+
+.promotion-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.promotion-box {
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.promotion-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.promo-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.promotion-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.promotion-box p {
+    color: #555;
+}
+
+/* CLASES MODIFICADAS PARA FONDO BLANCO */
+.discount-promo {
+    background: white; 
+    color: var(--azul-oscuro); /* Letras azul oscuro para contraste */
+    border: 1px solid var(--gris-claro);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+}
+
+.install-promo {
+    background: white; 
+    color: var(--azul-oscuro);
+    border: 1px solid var(--gris-claro);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); 
+}
+
+/* Aseguramos que los encabezados y los iconos tengan el color corporativo sobre el fondo blanco */
+.install-promo h3, .discount-promo h3 {
+    color: var(--azul-cgp); 
+}
+.install-promo .promo-icon, .discount-promo .promo-icon {
+    color: var(--azul-oscuro); 
+}
+
+
+/* ESTILOS DE BOTONES INTERACTIVOS */
+.feature-buttons-container {
+    text-align: center;
+    margin-top: 30px; 
+    padding-top: 20px;
+    border-top: 1px solid var(--gris-claro); 
+}
+
+.feature-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px auto;
+    flex-wrap: wrap;
+    max-width: 600px;
+}
+
+.feature-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    background: white; 
+    border: 1px solid var(--gris-claro); 
+    padding: 15px 10px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    width: 130px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.feature-btn:hover {
+    background: var(--azul-cgp); 
+    color: white;
+    transform: translateY(-5px);
+}
+
+.feature-btn img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    filter: none; 
+}
+
+/* ❌ REGLA ELIMINADA para que la imagen no cambie de color al hacer hover */
+/* .feature-btn:hover img {
+    filter: invert(100%); 
+} */
+
+.feature-btn .btn-text {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--azul-oscuro); 
+    text-shadow: none; 
+}
+
+.feature-btn:hover .btn-text {
+    color: white; 
+}
+
+/* Tooltip (Ventana flotante) */
+.tooltip-container {
+    position: relative;
+}
+
+.tooltip {
+    visibility: hidden;
+    opacity: 0;
+    width: 200px;
+    background-color: var(--azul-cgp);
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 30; 
+    bottom: 100%; 
+    left: 50%;
+    margin-left: -100px;
+    transition: opacity 0.3s;
+    font-size: 0.85rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip-container:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* --------------------------
+   PLANES TIGO (Diseño Blanco/Azul)
+--------------------------- */
+
+.planes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.plan {
+  background: white; 
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  padding: 20px;
+  transition: 0.3s;
+  color: var(--azul-oscuro); 
+  border: 2px solid var(--azul-cgp); 
+}
+
+.plan:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+  background: var(--gris-claro); 
+}
+
+.plan h3 {
+  margin-bottom: 10px;
+  /* CAMBIO: Color azul corporativo en lugar de dorado */
+  color: var(--azul-cgp); 
+  font-size: 1.4rem;
+}
+
+.plan ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+.plan li {
+    padding-left: 0; /* AJUSTADO: Eliminado el padding del chulo */
+    text-indent: 0; /* AJUSTADO: Eliminado el indent del chulo */
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.plan li::before {
+    content: none; /* ELIMINADO: Se quita el "chulito verde" */
+    /* Se eliminan las reglas de color y margen. */
+}
+
+.plan a.btn-secondary {
+    background: var(--azul-cgp); 
+    color: white;
+}
+
+.plan a.btn-secondary:hover {
+    /* CAMBIO: Hover azul oscuro en lugar de dorado */
+    background: var(--azul-oscuro); 
+    color: white;
+}
+
+/* --------------------------
+   SECCIÓN ALIADOS (Fondo Azul Claro)
+--------------------------- */
+
+#aliados {
+    background-color: var(--azul-claro-fondo); /* Azul Claro */
+    color: #1a1a1a; 
+    padding: 60px 20px; 
+    text-align: center; 
+}
+
+#aliados h2 {
+    color: var(--azul-cgp); 
+    margin-bottom: 30px;
+}
+
+.aliados-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; 
+}
+
+.aliado {
+    background: white;
+    color: #333; 
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: left; 
+    /* CAMBIO: Borde azul oscuro en lugar de dorado */
+    border-bottom: 5px solid var(--azul-oscuro); 
+}
+
+.aliado:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
+}
+
+.aliado h3 {
+    color: var(--azul-oscuro); 
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    border-bottom: 2px dotted var(--gris-claro);
+    padding-bottom: 5px;
+}
+
+.aliado p {
+    line-height: 1.6;
+}
+
+/* --------------------------
+   RESTO DE SECCIONES (QUIÉNES SOMOS, CONTACTO, FOOTER)
+--------------------------- */
+
+.about-section {
+  max-width: 900px;
+  margin: 60px auto;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  border: 1px solid rgba(0, 70, 179, 0.2);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+  padding: 40px 50px;
+  backdrop-filter: blur(6px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 30px rgba(0, 70, 179, 0.15);
+}
+
+.about-section h2 {
+  color: #0152BC;
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.about-section h3 {
+  color: #0046B3;
+  margin-top: 20px; 
+}
+
+.about-section p,
+.about-section li {
+  color: #333;
+  line-height: 1.7;
+  font-size: 1.05rem;
+  margin-bottom: 10px; 
+}
+
+.about-section ul {
+  margin-left: 25px;
+}
+
+.about-section li {
+  margin-bottom: 8px;
+}
+
+.contact-section form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+  margin: auto;
+}
+
+input, textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 100px;
+}
+
+footer {
+  background: url('Assets/fondo-tigo.svg') center/cover no-repeat;
+  color: white;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* OFICINA DIGITAL */
+.contact-footer {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.contact-footer h3 {
+    /* CAMBIO: Color blanco en lugar de dorado */
+    color: white; 
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.contact-footer p {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.contact-footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-footer a:hover {
+    /* CAMBIO: Hover azul más claro o blanco */
+    color: var(--azul-claro-fondo); 
+    text-decoration: underline;
+}
+
+footer nav { /* Estilo para el nuevo nav de enlaces legales */
+    margin: 15px 0;
+}
+
+footer ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+}
+
+footer a {
+  /* CAMBIO: Color blanco en lugar de dorado */
+  color: white; 
+}
+
+footer a:hover {
+    color: var(--azul-claro-fondo);
+}
+
+
+/* WHATSAPP FLOAT y Responsive se mantienen igual */
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+  }
+  .logo, .logo-tigo {
+    height: 40px; 
+  }
+  .header-content {
+    padding: 10px 15px; 
+  }
+  .section {
+    padding: 30px 15px 50px 15px;
+  }
+  .about-section {
+    padding: 25px; 
+    margin: 40px auto; 
+  }
+  h1 { 
+    font-size: 1.6rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  .local-tag {
+    font-size: 0.9rem;
+  }
+  .promotion-grid {
+      grid-template-columns: 1fr;
+  }
+  .feature-buttons {
+      gap: 15px;
+  }
+  .feature-btn {
+      width: 100px; /* Ajuste para móviles */
+      padding: 10px 5px;
+  }
+  .feature-btn .btn-text {
+      font-size: 0.8rem;
+  }
+  .aliados-grid {
+      flex-direction: column;
+      align-items: center;
+  }
+  .aliado {
+      max-width: 90%;
+  }
+  footer ul {
+      flex-direction: column;
+      gap: 10px;
+  }
+}
+
+/* Para pantallas aún más pequeñas (ej. smartphones muy estrechos) */
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 1.4rem;
+    }
+    .promotion-grid {
+        grid-template-columns: 1fr;
+    }
+    .feature-buttons {
+        gap: 10px;
+    }
+    .feature-btn {
+        width: 90px;
+    }
+    .tooltip {
+        width: 150px;
+        margin-left: -75px;
+        font-size: 0.75rem;
+    }
+}
