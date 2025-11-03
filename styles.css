@@ -1,0 +1,525 @@
+/* --- INICIO DE styles.css --- */
+
+/* 1. Globales y Reseteo Básico */
+:root {
+  --color-primario: #0152BC; /* Azul Tigo/Corporativo */
+  --color-secundario: #00A9E0; /* Azul claro Tigo */
+  --color-texto: #333;
+  --color-fondo-claro: #f4f8ff;
+  --color-blanco: #ffffff;
+  --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--color-texto);
+  background-color: var(--color-blanco);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* 2. Clase de Accesibilidad (Para H1 y H2 ocultos) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* 3. Loader (Pantalla de Carga) */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-blanco);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 0.5s ease;
+}
+
+#loader.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loader-logo {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* 4. Cabecera (Header) y Navegación */
+#header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: var(--color-blanco);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.logo, .logo-tigo {
+  height: 55px; /* Altura del HTML */
+  width: auto;
+}
+
+.nav ul {
+  display: flex;
+  list-style: none;
+}
+
+.nav li {
+  margin-left: 25px;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--color-texto);
+  font-weight: 600;
+  padding: 5px;
+  transition: color 0.3s ease;
+}
+
+.nav a:hover, .nav a:focus {
+  color: var(--color-primario);
+}
+
+/* 5. Sección Hero (Video) - CORRECCIÓN DE ALTURA */
+.hero {
+  position: relative;
+  /* Esta es la corrección: 70% de la altura de la ventana */
+  min-height: 70vh; 
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--color-blanco);
+}
+
+#hero-video-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -2;
+  object-fit: cover; /* Cubre sin franjas negras */
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Sombreado para legibilidad */
+  z-index: -1;
+}
+
+.hero-content {
+  z-index: 1;
+}
+
+/* 6. Botones */
+.btn-primary, .btn-secondary {
+  display: inline-block;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  background-color: var(--color-secundario);
+}
+
+.btn-secondary {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  width: 100%;
+  text-align: center;
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-primario);
+  transform: translateY(-2px);
+}
+
+
+/* 7. Estructura de Secciones */
+.section {
+  padding: 60px 0;
+}
+
+.blue-section {
+  background-color: var(--color-fondo-claro);
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: var(--color-primario);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+h3 {
+  font-size: 1.5rem;
+  color: var(--color-texto);
+  margin-bottom: 15px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+ul li {
+  margin-bottom: 10px;
+  position: relative;
+  padding-left: 20px;
+}
+
+ul li::before {
+  content: '✓'; /* Viñeta simple */
+  position: absolute;
+  left: 0;
+  color: var(--color-primario);
+  font-weight: 600;
+}
+
+/* 8. Sección Promociones y Features */
+.promotion-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.promotion-box {
+  background: var(--color-blanco);
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: var(--sombra-suave);
+}
+
+.promo-icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.feature-buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.feature-buttons {
+  display: flex;
+  gap: 20px;
+  background: var(--color-blanco);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--sombra-suave);
+}
+
+.feature-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  position: relative; /* Para el tooltip */
+}
+
+.btn-text {
+  font-weight: 500;
+}
+
+/* Tooltip (Descripción emergente) */
+.tooltip-container .tooltip {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--color-texto);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Encima del botón */
+  left: 50%;
+  margin-left: -100px; /* Centrar */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip-container:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* 9. Sección Planes */
+.planes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.plan {
+  background: var(--color-blanco);
+  border-radius: 12px;
+  box-shadow: var(--sombra-suave);
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.plan h3 {
+  font-size: 1.25rem;
+  color: var(--color-primario);
+}
+
+/* 10. Sección Aliados */
+.aliados-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.aliado {
+  background: var(--color-fondo-claro);
+  padding: 25px;
+  border-radius: 12px;
+}
+
+/* 11. Sección Quiénes Somos */
+.about-section {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-section h3 {
+  color: var(--color-primario);
+  margin-top: 30px;
+}
+
+.valores {
+  text-align: left;
+  max-width: 600px;
+  margin: 20px auto 0;
+  padding-left: 0;
+}
+
+.valores li::before {
+  content: ''; /* Quitar viñeta de check */
+  padding-left: 0;
+}
+.valores li {
+  padding-left: 0;
+}
+
+
+/* 12. Sección Contacto (Formulario) */
+.contact-section form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-section label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.contact-section input,
+.contact-section textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.contact-section textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-section button[type="submit"] {
+  border: none;
+  cursor: pointer;
+}
+
+/* 13. Footer (Pie de Página) */
+footer {
+  background-color: #222;
+  color: #f4f4f4;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.contact-footer h3 {
+  color: var(--color-blanco);
+}
+
+footer p {
+  margin-bottom: 20px;
+}
+
+footer a {
+  color: #f4f4f4;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--color-secundario);
+}
+
+footer nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+
+footer nav li::before {
+  content: ''; /* Sin viñetas */
+  padding-left: 0;
+}
+footer nav li {
+  padding-left: 0;
+}
+
+
+/* 14. Botón Flotante de WhatsApp */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  color: var(--color-blanco);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 99;
+  transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.1);
+}
+
+/* 15. Responsividad (Móviles) */
+@media (max-width: 900px) {
+  .planes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .nav {
+    width: 100%;
+    overflow-x: auto; /* Permite scroll horizontal si no caben */
+  }
+
+  .nav ul {
+    justify-content: center;
+  }
+  
+  .nav li {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  .promotion-grid,
+  .aliados-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .planes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .tooltip-container .tooltip {
+    /* Desactivar tooltip en móvil para evitar problemas de toque */
+    display: none; 
+  }
+}
